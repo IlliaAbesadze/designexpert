@@ -44,3 +44,51 @@
     }
   }
 }
+
+// Уход первого экрана при скролле: шапка и hero компенсируют скролл
+// (визуально стоят на месте) и растворяются, а следующий блок проезжает
+// поверх них. Только CSS scroll-driven animations; без поддержки и при
+// prefers-reduced-motion — обычный скролл.
+// transform должен меняться линейно и ровно на величину скролла,
+// поэтому длина хода и animation-range совпадают (70svh).
+@keyframes first-screen-out {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  // Растворяется быстрее, чем уезжает: к моменту, когда следующий блок
+  // доходит до заголовка, hero уже почти прозрачный
+  25% {
+    opacity: 0.15;
+  }
+
+  45% {
+    opacity: 0;
+  }
+
+  100% {
+    visibility: hidden;
+    opacity: 0;
+    transform: translate3d(0, 70svh, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .header,
+    .hero {
+      position: relative;
+      z-index: 0;
+      animation: first-screen-out linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 70svh;
+    }
+
+    // Всё, что идёт после hero, — слоем выше исчезающего первого экрана
+    .hero ~ * {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}

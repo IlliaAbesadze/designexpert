@@ -49,6 +49,35 @@ test.describe('@motion появления', () => {
     await expect.poll(() => scale(0)).toBeLessThan(1);
   });
 
+  test('первый экран стоит на месте и растворяется при скролле', async ({ page }) => {
+    await page.goto('/');
+    const height = page.viewportSize().height;
+    const state = () =>
+      page.evaluate(() => {
+        const hero = document.querySelector('.hero');
+        const title = document.querySelector('.hero__title');
+        return {
+          opacity: Number(getComputedStyle(hero).opacity),
+          top: title.getBoundingClientRect().top,
+        };
+      });
+    const scrollTo = (top) =>
+      page.evaluate((top) => window.scrollTo({ top, behavior: 'instant' }), top);
+
+    const start = await state();
+    expect(start.opacity).toBe(1);
+
+    await scrollTo(Math.round(height * 0.2));
+    await expect.poll(async () => (await state()).opacity).toBeLessThan(0.5);
+    expect(Math.abs((await state()).top - start.top)).toBeLessThan(2);
+
+    await scrollTo(Math.round(height * 0.8));
+    await expect.poll(async () => (await state()).opacity).toBe(0);
+    expect(await page.locator('.hero').evaluate((el) => getComputedStyle(el).visibility)).toBe(
+      'hidden',
+    );
+  });
+
   test('анимации не сдвигают вёрстку (CLS)', async ({ page }) => {
     await page.goto('/');
     await page.evaluate(async () => {
@@ -89,6 +118,8 @@ test.describe('@motion reduced motion', () => {
 
   test('контент виден сразу, движок не включается', async ({ page }) => {
     await page.goto('/');
+    await page.evaluate(() => window.scrollTo({ top: 500, behavior: 'instant' }));
+    expect(await page.locator('.hero').evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
     await expect(page.locator('html')).not.toHaveClass(/motion-ready/);
     expect(await hiddenAnimated(page)).toBe(0);
   });
