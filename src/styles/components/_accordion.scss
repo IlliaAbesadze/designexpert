@@ -2,28 +2,32 @@
 
 // Раскрывающийся список на нативном <details>: работает без JS,
 // атрибут name делает раскрытым только один пункт в группе.
+// С JS раскрытие анимируется по высоте (scripts/modules/accordion.js).
+// Отступы не меняются при открытии — поэтому анимация высоты без скачков.
 .accordion {
-  border-top: 1px solid var(--color-border);
+  @include line(top);
 
   &__item {
-    border-bottom: 1px solid var(--color-border);
+    @include line(bottom);
+
+    padding-bottom: var(--space-28);
   }
 
   &__summary {
-    padding-block: var(--space-28);
+    padding-top: var(--space-28);
     cursor: pointer;
 
     &:focus-visible {
       outline-offset: -2px;
     }
-
-    [open] > & {
-      padding-bottom: 0;
-    }
   }
 
+  // Без вертикальных отступов: иначе анимация высоты до 0 «споткнётся» о padding
   &__content {
-    padding-top: var(--space-28);
-    padding-bottom: var(--space-28);
+    overflow: hidden;
+
+    > :first-child {
+      padding-top: var(--space-28);
+    }
   }
 }

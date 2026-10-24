@@ -95,3 +95,31 @@
   outline: 2px solid $color;
   outline-offset: 4px;
 }
+
+/// Разделитель-линия на псевдоэлементе вместо border: его можно «прочертить»
+/// через transform (см. base/_motion.scss). Цвет меняется через --line-color.
+/// @example @include line(bottom, var(--color-border));
+@mixin line($side: bottom, $color: var(--color-border)) {
+  --line-color: #{$color};
+
+  position: relative;
+
+  &::after {
+    position: absolute;
+    #{$side}: 0;
+    inset-inline: 0;
+    height: 1px;
+    background-color: var(--line-color);
+    transform-origin: left center;
+    transition: background-color var(--duration-fast) ease-out;
+    pointer-events: none;
+    content: '';
+  }
+}
+
+/// Плавная смена цвета при наведении и смене состояния.
+@mixin color-transition($props: color) {
+  transition-duration: var(--duration-fast);
+  transition-property: $props;
+  transition-timing-function: ease-out;
+}

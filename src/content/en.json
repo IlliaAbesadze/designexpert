@@ -3,7 +3,7 @@
     "lang": "en",
     "title": "Ilya Abesadze — design services for digital products",
     "description": "Product designer with 8+ years of experience: SaaS, B2B, B2C and enterprise interfaces, design systems, consulting and team training.",
-    "url": "https://design.expert/"
+    "url": "https://design-expert.netlify.app/"
   },
   "header": {
     "intro": ["Ilya Abesadze", "8+ years of design expertise", "ex. Google employee"],
@@ -35,8 +35,7 @@
       {
         "company": "klarna",
         "category": "fintech / mobile apps",
-        "description": "Checkout and payment flows used by millions of shoppers across Europe. Redesigned onboarding and dispute flows to reduce support load.",
-        "open": true
+        "description": "Checkout and payment flows used by millions of shoppers across Europe. Redesigned onboarding and dispute flows to reduce support load."
       },
       {
         "company": "billine",
@@ -95,8 +94,7 @@
     "items": [
       {
         "title": "Interfaces design",
-        "description": "Web and mobile interfaces for SaaS, B2B and enterprise products: user flows, prototypes, UI and handoff to development.",
-        "open": true
+        "description": "Web and mobile interfaces for SaaS, B2B and enterprise products: user flows, prototypes, UI and handoff to development."
       },
       { "title": "Consulting & audit", "description": "TODO(content): описание услуги." },
       { "title": "Management", "description": "TODO(content): описание услуги." },

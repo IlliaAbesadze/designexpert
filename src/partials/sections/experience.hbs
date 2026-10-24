@@ -1,8 +1,8 @@
 <section class="experience section container" id="experience" aria-labelledby="experience-title" data-testid="experience">
   {{> components/section-head id="experience" title=experience.title lead=experience.lead modifier="light"}}
-  <div class="accordion experience__list">
+  <div class="accordion experience__list" data-line="top">
     {{#each experience.items}}
-      <details class="accordion__item experience-item" name="experience"{{#if open}} open{{/if}} data-testid="experience-item">
+      <details class="accordion__item experience-item" name="experience" data-js="accordion-item" data-line data-testid="experience-item">
         <summary class="accordion__summary experience-item__summary">
           <span class="experience-item__company">{{company}}</span>
           <span class="experience-item__meta">
@@ -10,7 +10,7 @@
             {{> components/toggle-icon}}
           </span>
         </summary>
-        <div class="accordion__content experience-item__content">
+        <div class="accordion__content experience-item__content" data-js="accordion-content">
           <p class="experience-item__description">{{description}}</p>
         </div>
       </details>

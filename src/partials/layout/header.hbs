@@ -1,8 +1,8 @@
 <header class="header container" data-testid="header">
-  <p class="header__intro">
+  <p class="header__intro" data-intro="1">
     {{#each header.intro}}<span class="header__intro-line">{{this}}</span>{{/each}}
   </p>
-  <nav class="header__nav" aria-label="Main">
+  <nav class="header__nav" aria-label="Main" data-intro="2">
     {{! Меню на Popover API: открывается и закрывается без JS, Esc и клик мимо закрывают его }}
     <button
       class="header__burger"
@@ -39,6 +39,7 @@
   </nav>
   <a
     class="header__lang is-desktop-only"
+    data-intro="3"
     href="{{header.language.href}}"
     hreflang="en"
     aria-current="page"

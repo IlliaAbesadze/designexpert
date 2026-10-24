@@ -1,17 +1,17 @@
 <footer class="contacts section--inverse" id="contacts" aria-labelledby="contacts-title" data-testid="contacts">
   <div class="contacts__inner container">
     <div class="contacts__top split">
-      <div class="contacts__intro">
+      <div class="contacts__intro" data-anim="fade-up">
         <h2 class="contacts__title" id="contacts-title">{{contacts.title}}</h2>
         <p class="contacts__lead">{{contacts.lead}}</p>
       </div>
       <ul class="contacts__list">
         {{#each contacts.links}}
-          <li class="contacts__item">{{> components/link class="contacts__link"}}</li>
+          <li class="contacts__item" data-line>{{> components/link class="contacts__link"}}</li>
         {{/each}}
       </ul>
     </div>
-    <div class="contacts__bottom split">
+    <div class="contacts__bottom split" data-anim="fade">
       <p class="contacts__location">{{contacts.location}}</p>
       <div class="contacts__meta">
         <ul class="contacts__social">
