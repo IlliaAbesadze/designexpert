@@ -37,6 +37,29 @@ test.describe('@motion появления', () => {
     expect(await lineScale()).toBe(1);
   });
 
+  test('заголовки выезжают из-под маски', async ({ page }) => {
+    await page.goto('/');
+    const title = page.locator('.cases__title');
+    const inner = title.locator('.anim-mask__inner');
+    const shift = () => inner.evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).m42);
+
+    expect(await shift()).toBeGreaterThan(0);
+    await title.scrollIntoViewIfNeeded();
+    await expect.poll(shift, { timeout: 4000 }).toBe(0);
+  });
+
+  test('при наведении линия прорисовывается ещё раз', async ({ page, isMobile }) => {
+    test.skip(isMobile, 'на тач-устройствах наведения нет');
+    await page.goto('/');
+    const card = page.getByTestId('case-card').first();
+    await card.scrollIntoViewIfNeeded();
+    await expect(card).toHaveClass(/is-inview/);
+    await card.hover();
+    expect(await card.evaluate((el) => getComputedStyle(el, '::after').animationName)).toBe(
+      'line-replay',
+    );
+  });
+
   test('картинки раскрываются полностью', async ({ page }) => {
     await page.goto('/');
     const media = page.locator('[data-anim="reveal"]').first();

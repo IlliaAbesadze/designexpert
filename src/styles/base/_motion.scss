@@ -43,6 +43,21 @@
     }
   }
 
+  // Текст выезжает снизу из-под маски строки (заголовки секций и карточек)
+  [data-anim='mask'] {
+    overflow: clip;
+    overflow-clip-margin: 0.15em;
+  }
+
+  [data-anim='mask'] > .anim-mask__inner {
+    display: inline-block;
+    transition: transform var(--duration-slow) var(--ease-out) var(--reveal-delay, 0ms);
+  }
+
+  [data-anim='mask']:not(.is-inview) > .anim-mask__inner {
+    transform: translate3d(0, 110%, 0);
+  }
+
   // Линии списков прочерчиваются слева направо один раз при появлении,
   // соседние — каскадом сверху вниз
   [data-line].is-inview::after {
@@ -53,6 +68,48 @@
 
   [data-line]:not(.is-inview)::after {
     transform: scaleX(0);
+  }
+}
+
+// Подчёркивание при наведении: когда линия уже прочерчена, наведение на
+// карточку, пункт аккордеона или строку списка проигрывает её ещё раз —
+// линия уходит вправо и прорисовывается заново слева.
+@keyframes line-replay {
+  0% {
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
+
+  45% {
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+
+  55% {
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+
+  100% {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .accordion__item:hover,
+  .case-card:hover,
+  .letter-row:hover,
+  .contacts__item:hover,
+  .media-card:hover .media-card__body {
+    &::after {
+      animation: line-replay var(--duration-slow) var(--ease-in-out);
+    }
+  }
+
+  // Пока линия не прочерчена при появлении — не трогаем
+  .motion-ready [data-line]:not(.is-inview)::after {
+    animation: none;
   }
 }
 

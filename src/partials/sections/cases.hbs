@@ -1,5 +1,5 @@
 <section class="cases section container" id="cases" aria-labelledby="cases-title" data-testid="cases">
-  <h2 class="cases__title" id="cases-title" data-anim="fade-up">{{cases.title}}</h2>
+  <h2 class="cases__title" id="cases-title" data-anim="mask"><span class="anim-mask__inner">{{cases.title}}</span></h2>
   <ul class="cases__list">
     {{#each cases.items}}
       <li class="cases__item">
@@ -9,9 +9,9 @@
               <img class="case-card__image" src="{{image.src}}" alt="{{image.alt}}" width="880" height="600" loading="lazy" decoding="async">
             {{/if}}
           </div>
-          <div class="case-card__info" data-anim="fade-up">
-            <h3 class="case-card__title">{{title}}</h3>
-            <p class="case-card__tags">{{tags}}</p>
+          <div class="case-card__info">
+            <h3 class="case-card__title" data-anim="mask"><span class="anim-mask__inner">{{title}}</span></h3>
+            <p class="case-card__tags" data-anim="fade">{{tags}}</p>
           </div>
         </article>
       </li>

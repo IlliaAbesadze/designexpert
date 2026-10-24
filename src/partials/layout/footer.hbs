@@ -1,9 +1,9 @@
 <footer class="contacts section--inverse" id="contacts" aria-labelledby="contacts-title" data-testid="contacts">
   <div class="contacts__inner container">
     <div class="contacts__top split">
-      <div class="contacts__intro" data-anim="fade-up">
-        <h2 class="contacts__title" id="contacts-title">{{contacts.title}}</h2>
-        <p class="contacts__lead">{{contacts.lead}}</p>
+      <div class="contacts__intro">
+        <h2 class="contacts__title" id="contacts-title" data-anim="mask"><span class="anim-mask__inner">{{contacts.title}}</span></h2>
+        <p class="contacts__lead" data-anim="fade-up">{{contacts.lead}}</p>
       </div>
       <ul class="contacts__list">
         {{#each contacts.links}}
