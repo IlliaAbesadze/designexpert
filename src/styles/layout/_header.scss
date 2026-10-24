@@ -25,15 +25,6 @@
   &__burger {
     display: block;
     color: var(--color-icon);
-
-    .burger::before {
-      transition: transform var(--duration-base) var(--ease-out);
-    }
-
-    // Короткая верхняя линия (32 из 44) дотягивается до полной ширины
-    &:hover .burger::before {
-      transform: scaleX(1.375);
-    }
   }
 
   &__lang {
@@ -62,7 +53,6 @@
   &::before {
     top: 25%;
     inset-inline: 13.64%;
-    transform-origin: center;
   }
 
   &::after {
@@ -94,24 +84,6 @@
   color: var(--color-text);
   background-color: var(--color-bg);
   border: 0;
-  opacity: 0;
-  transform: translate3d(0, calc(var(--motion-shift) * -1), 0);
-  transition:
-    opacity var(--duration-base) var(--ease-out),
-    transform var(--duration-base) var(--ease-out),
-    overlay var(--duration-base) allow-discrete,
-    display var(--duration-base) allow-discrete;
-
-  // Popover: появление через @starting-style, исчезновение — через allow-discrete
-  &:popover-open {
-    opacity: 1;
-    transform: none;
-
-    @starting-style {
-      opacity: 0;
-      transform: translate3d(0, calc(var(--motion-shift) * -1), 0);
-    }
-  }
 
   &__bar {
     display: flex;
@@ -139,33 +111,8 @@
     @include adaptive(padding-block, 60, 100);
   }
 
-  &__item {
-    opacity: 0;
-    transform: translate3d(0, var(--motion-shift), 0);
-    transition:
-      opacity var(--duration-slow) var(--ease-out),
-      transform var(--duration-slow) var(--ease-out);
-
-    .menu:popover-open & {
-      opacity: 1;
-      transform: none;
-
-      @starting-style {
-        opacity: 0;
-        transform: translate3d(0, var(--motion-shift), 0);
-      }
-    }
-
-    @for $i from 1 through 10 {
-      &:nth-child(#{$i}) {
-        transition-delay: calc(#{$i} * 40ms + 60ms);
-      }
-    }
-  }
-
   &__link {
     @include text(display);
-    @include color-transition;
 
     &:hover {
       color: var(--color-text-muted);

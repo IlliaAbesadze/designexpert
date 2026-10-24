@@ -1,17 +1,17 @@
 <section class="cases section container" id="cases" aria-labelledby="cases-title" data-testid="cases">
-  <h2 class="cases__title" id="cases-title" data-anim="mask"><span class="anim-mask__inner">{{cases.title}}</span></h2>
+  <h2 class="cases__title" id="cases-title">{{cases.title}}</h2>
   <ul class="cases__list">
     {{#each cases.items}}
       <li class="cases__item">
-        <article class="case-card" data-line data-testid="case-card">
-          <div class="case-card__media{{#if placeholder}} case-card__media--{{placeholder}}{{/if}}" data-anim="reveal">
+        <article class="case-card" data-testid="case-card">
+          <div class="case-card__media{{#if placeholder}} case-card__media--{{placeholder}}{{/if}}">
             {{#if image}}
               <img class="case-card__image" src="{{image.src}}" alt="{{image.alt}}" width="880" height="600" loading="lazy" decoding="async">
             {{/if}}
           </div>
           <div class="case-card__info">
-            <h3 class="case-card__title" data-anim="mask"><span class="anim-mask__inner">{{title}}</span></h3>
-            <p class="case-card__tags" data-anim="fade">{{tags}}</p>
+            <h3 class="case-card__title">{{title}}</h3>
+            <p class="case-card__tags">{{tags}}</p>
           </div>
         </article>
       </li>

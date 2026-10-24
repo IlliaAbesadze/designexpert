@@ -31,8 +31,7 @@
     "test:lighthouse": "lhci autorun",
     "check": "npm run lint && npm run test:unit && npm run build && npm run lint:html && npm run check:assets",
     "check:assets": "node build/check-assets.js",
-    "prepare": "simple-git-hooks",
-    "test:motion": "playwright test --grep @motion"
+    "prepare": "simple-git-hooks"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

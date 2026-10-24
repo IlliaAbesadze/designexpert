@@ -7,16 +7,16 @@
   <div class="work-formats__inner container">
     <div class="work-formats__top split split--flush">
       <div class="work-formats__intro">
-        <h2 class="work-formats__title" id="work-formats-title" data-anim="mask"><span class="anim-mask__inner">{{workFormats.title}}</span></h2>
-        <p class="work-formats__lead" data-anim="fade-up">{{workFormats.lead}}</p>
+        <h2 class="work-formats__title" id="work-formats-title">{{workFormats.title}}</h2>
+        <p class="work-formats__lead">{{workFormats.lead}}</p>
       </div>
       <ul class="work-formats__list">
         {{#each workFormats.items}}
           <li class="work-formats__item">
-            <article class="price-card" data-anim="fade" data-testid="price-card">
+            <article class="price-card" data-testid="price-card">
               <p class="price-card__number" aria-hidden="true">{{number}}</p>
               <div class="price-card__body">
-                <h3 class="price-card__title" data-anim="mask"><span class="anim-mask__inner">{{title}}</span></h3>
+                <h3 class="price-card__title">{{title}}</h3>
                 <p class="price-card__description">{{description}}</p>
               </div>
             </article>
@@ -26,8 +26,8 @@
     </div>
     <div class="work-formats__bottom split split--flush">
       {{! TODO(design): слот под видео/иллюстрацию — в макете белая подложка-заглушка }}
-      <div class="work-formats__frame" aria-hidden="true" data-anim="reveal"></div>
-      <div class="work-formats__media" data-anim="reveal">
+      <div class="work-formats__frame" aria-hidden="true"></div>
+      <div class="work-formats__media">
         <img
           class="work-formats__image"
           src="{{workFormats.portrait.src}}"

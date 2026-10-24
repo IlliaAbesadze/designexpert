@@ -1,7 +1,6 @@
 @use '../abstracts' as *;
 
 // Иконки Plus / Minus из макета: 15px (S, мобайл) → 20px (M, десктоп).
-// Вертикальная черта плавно схлопывается — плюс превращается в минус.
 .toggle-icon {
   --line: 1px;
 
@@ -34,11 +33,9 @@
     bottom: 0;
     left: calc(50% - var(--line) / 2);
     width: var(--line);
-    transition: transform var(--duration-base) var(--ease-out);
   }
 
-  // .is-closing — пункт ещё открыт, но уже сворачивается анимацией
-  [open]:not(.is-closing) > .accordion__summary &::after {
-    transform: rotate(90deg) scaleY(0);
+  [open] > .accordion__summary &::after {
+    display: none;
   }
 }

@@ -51,8 +51,6 @@
 
   &__link,
   &__social-link {
-    @include color-transition;
-
     &:hover {
       color: var(--color-text-muted);
     }

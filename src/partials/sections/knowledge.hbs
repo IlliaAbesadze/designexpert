@@ -4,7 +4,7 @@
     <ul class="knowledge__list">
       {{#each knowledge.items}}
         <li class="knowledge__item">
-          <article class="knowledge-card" data-anim="fade" data-testid="knowledge-card">
+          <article class="knowledge-card" data-testid="knowledge-card">
             <div class="knowledge-card__top">
               <p class="knowledge-card__number" aria-hidden="true">{{number}}</p>
               {{#if tools}}
@@ -14,7 +14,7 @@
               {{/if}}
             </div>
             <div class="knowledge-card__body">
-              <h3 class="knowledge-card__title" data-anim="mask"><span class="anim-mask__inner">{{title}}</span></h3>
+              <h3 class="knowledge-card__title">{{title}}</h3>
               <p class="knowledge-card__description">{{description}}</p>
             </div>
           </article>

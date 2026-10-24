@@ -1,11 +1,11 @@
 <section class="hero container" aria-labelledby="hero-title" data-testid="hero">
   <div class="hero__content">
-    <p class="hero__tags" data-intro="2">{{hero.tags}}</p>
+    <p class="hero__tags">{{hero.tags}}</p>
     <h1 class="hero__title" id="hero-title">
       {{#each hero.title}}<span class="hero__title-line">{{this}}</span> {{/each}}
     </h1>
   </div>
-  <ul class="hero__links is-desktop-only" data-intro="4">
+  <ul class="hero__links is-desktop-only">
     {{#each hero.links}}
       <li>{{> components/link class="hero__link"}}</li>
     {{/each}}
