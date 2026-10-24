@@ -1,0 +1,25 @@
+<section class="knowledge section" id="knowledge" aria-labelledby="knowledge-title" data-testid="knowledge">
+  <div class="knowledge__inner container">
+    {{> components/section-head id="knowledge" title=knowledge.title lead=knowledge.lead note=knowledge.note modifier="knowledge"}}
+    <ul class="knowledge__list">
+      {{#each knowledge.items}}
+        <li class="knowledge__item">
+          <article class="knowledge-card" data-testid="knowledge-card">
+            <div class="knowledge-card__top">
+              <p class="knowledge-card__number" aria-hidden="true">{{number}}</p>
+              {{#if tools}}
+                <ul class="knowledge-card__tools" aria-label="Tools">
+                  {{#each tools}}{{> components/tool-badge}}{{/each}}
+                </ul>
+              {{/if}}
+            </div>
+            <div class="knowledge-card__body">
+              <h3 class="knowledge-card__title">{{title}}</h3>
+              <p class="knowledge-card__description">{{description}}</p>
+            </div>
+          </article>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</section>

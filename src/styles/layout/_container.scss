@@ -1,0 +1,38 @@
+@use '../abstracts' as *;
+
+// Контентная колонка: поля по краям fluid 16 → 60, максимум — ширина десктопного макета.
+.container {
+  width: 100%;
+  max-width: rem($container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+// Базовая сетка десктопа: две равные колонки (880 + 40 + 880 на 1920).
+.split {
+  display: grid;
+  gap: var(--grid-gap);
+
+  @include mq(desktop) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  &--flush {
+    @include mq(desktop) {
+      column-gap: 0;
+    }
+  }
+}
+
+.section {
+  padding-bottom: var(--section-space);
+
+  &--inverse {
+    color: var(--color-text-inverse);
+    background-color: var(--color-bg-inverse);
+
+    :focus-visible {
+      outline-color: var(--color-focus-inverse);
+    }
+  }
+}

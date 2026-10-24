@@ -1,0 +1,29 @@
+@use '../abstracts' as *;
+
+// Раскрывающийся список на нативном <details>: работает без JS,
+// атрибут name делает раскрытым только один пункт в группе.
+.accordion {
+  border-top: 1px solid var(--color-border);
+
+  &__item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  &__summary {
+    padding-block: var(--space-28);
+    cursor: pointer;
+
+    &:focus-visible {
+      outline-offset: -2px;
+    }
+
+    [open] > & {
+      padding-bottom: 0;
+    }
+  }
+
+  &__content {
+    padding-top: var(--space-28);
+    padding-bottom: var(--space-28);
+  }
+}

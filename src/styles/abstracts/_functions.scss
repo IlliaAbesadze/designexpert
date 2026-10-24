@@ -1,0 +1,92 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'config' as *;
+
+/// Убирает единицы: 24px → 24, 24 → 24.
+@function strip-unit($value) {
+  @if meta.type-of($value) == 'number' and not math.is-unitless($value) {
+    @return math.div($value, $value * 0 + 1);
+  }
+
+  @return $value;
+}
+
+@function round-to($value, $precision: 4) {
+  $factor: math.pow(10, $precision);
+
+  @return math.div(math.round($value * $factor), $factor);
+}
+
+/// Пиксели → rem.
+/// @example width: rem(24); // 1.5rem
+@function rem($px) {
+  @return round-to(math.div(strip-unit($px), $root-font-size)) * 1rem;
+}
+
+/// Fluid-значение: линейно меняется между двумя точками вьюпорта
+/// и ограничивается clamp() по краям диапазона.
+/// Можно передавать и уменьшающиеся значения ($min > $max).
+///
+/// @param {Number} $min    — значение (px) на ширине $vp-min
+/// @param {Number} $max    — значение (px) на ширине $vp-max
+/// @param {Number} $vp-min — ширина вьюпорта (px), где действует $min
+/// @param {Number} $vp-max — ширина вьюпорта (px), где действует $max
+/// @example font-size: fluid(32, 64, 375, 1920);
+///   // → clamp(2rem, 1.2258rem + 2.0712vw, 4rem)
+@function fluid($min, $max, $vp-min: $vp-mobile, $vp-max: $vp-desktop) {
+  $min: strip-unit($min);
+  $max: strip-unit($max);
+  $vp-min: strip-unit($vp-min);
+  $vp-max: strip-unit($vp-max);
+
+  @if $vp-min >= $vp-max {
+    @error 'fluid(): $vp-min (#{$vp-min}) должен быть меньше $vp-max (#{$vp-max})';
+  }
+
+  @if $min == $max {
+    @return rem($min);
+  }
+
+  $slope: math.div($max - $min, $vp-max - $vp-min);
+  $intercept: $min - $slope * $vp-min;
+  $lower: math.min($min, $max);
+  $upper: math.max($min, $max);
+
+  @return clamp(#{rem($lower)}, #{rem($intercept)} + #{round-to($slope * 100)}vw, #{rem($upper)});
+}
+
+/// Значение на стыке раскладок (1023 ↔ 1024): десктопное значение,
+/// пропорционально уменьшенное до $vp-desktop-min, но не меньше мобильного.
+@function junction($desktop, $mobile) {
+  $desktop: strip-unit($desktop);
+  $mobile: strip-unit($mobile);
+
+  @return round-to(math.max($mobile, math.div($desktop * $vp-desktop-min, $vp-desktop)), 2);
+}
+
+/// Мобильный диапазон 320 → 1023.
+/// На 375 — ровно значение из мобильного макета, к 1023 плавно
+/// растёт до значения на стыке, чтобы на 1024 не было скачка.
+/// @param {Number} $mobile  — значение из мобильного макета (375)
+/// @param {Number} $desktop — значение из десктопного макета (1920)
+@function fluid-m($mobile, $desktop: $mobile) {
+  $mobile: strip-unit($mobile);
+  $end: junction($desktop, $mobile);
+
+  @if $end == $mobile {
+    @return rem($mobile);
+  }
+
+  $slope: math.div($end - $mobile, ($vp-desktop-min - 1) - $vp-mobile);
+  $start: round-to($mobile - $slope * ($vp-mobile - $vp-mobile-min), 2);
+
+  @return fluid($start, $end, $vp-mobile-min, $vp-desktop-min - 1);
+}
+
+/// Десктопный диапазон 1024 → 1920.
+/// На 1920 — ровно значение из десктопного макета, на 1024 — значение
+/// на стыке; выше 1920 не растёт.
+@function fluid-d($desktop, $mobile: $desktop) {
+  @return fluid(junction($desktop, $mobile), $desktop, $vp-desktop-min, $vp-desktop);
+}

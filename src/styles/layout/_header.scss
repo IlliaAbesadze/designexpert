@@ -1,0 +1,125 @@
+@use '../abstracts' as *;
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  min-height: var(--header-height);
+  padding-top: var(--space-60);
+
+  @include mq(desktop) {
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  &__intro {
+    @include text(ui-caps-s);
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__nav {
+    @include adaptive(margin-top, 5, 18);
+  }
+
+  &__burger {
+    display: block;
+    color: var(--color-icon);
+  }
+
+  &__lang {
+    @include text(ui-caps);
+
+    place-self: center end;
+  }
+}
+
+// Иконка Menu / Close из макета: 44×24, линии 2px.
+.burger {
+  position: relative;
+  display: block;
+  width: rem(44);
+  height: rem(24);
+
+  &::before,
+  &::after {
+    position: absolute;
+    inset-inline: 0;
+    height: rem(2);
+    background-color: currentcolor;
+    content: '';
+  }
+
+  &::before {
+    top: 25%;
+    inset-inline: 13.64%;
+  }
+
+  &::after {
+    top: 66.67%;
+  }
+
+  &--close::before,
+  &--close::after {
+    top: calc(50% - #{rem(1)});
+    inset-inline: 0;
+  }
+
+  &--close::before {
+    rotate: 45deg;
+  }
+
+  &--close::after {
+    rotate: -45deg;
+  }
+}
+
+.menu {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  padding: 0;
+  overflow-y: auto;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 0;
+
+  &__bar {
+    display: flex;
+    justify-content: flex-end;
+    min-height: var(--header-height);
+    padding-top: var(--space-60);
+
+    @include mq(desktop) {
+      justify-content: center;
+    }
+  }
+
+  &__close {
+    @include adaptive(margin-top, 5, 18);
+
+    align-self: flex-start;
+    color: var(--color-icon);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    @include adaptive(gap, 14, 28);
+    @include adaptive(padding-block, 60, 100);
+  }
+
+  &__link {
+    @include text(display);
+
+    &:hover {
+      color: var(--color-text-muted);
+    }
+  }
+}
+
+body:has(.menu:popover-open) {
+  overflow: hidden;
+}

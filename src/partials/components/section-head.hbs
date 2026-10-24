@@ -1,0 +1,10 @@
+{{!-- Заголовок секции: слева название, справа вводный текст (колонка 880 на 1920) --}}
+<div class="section-head split{{#if modifier}} section-head--{{modifier}}{{/if}}">
+  <h2 class="section-head__title" id="{{id}}-title">{{title}}</h2>
+  {{#if lead}}
+    <div class="section-head__body">
+      <p class="section-head__lead">{{lead}}</p>
+      {{#if note}}<p class="section-head__note">{{note}}</p>{{/if}}
+    </div>
+  {{/if}}
+</div>

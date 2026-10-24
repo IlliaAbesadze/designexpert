@@ -1,0 +1,256 @@
+{
+  "meta": {
+    "lang": "en",
+    "title": "Ilya Abesadze — design services for digital products",
+    "description": "Product designer with 8+ years of experience: SaaS, B2B, B2C and enterprise interfaces, design systems, consulting and team training.",
+    "url": "https://design.expert/"
+  },
+  "header": {
+    "intro": ["Ilya Abesadze", "8+ years of design expertise", "ex. Google employee"],
+    "menuLabel": "Menu",
+    "language": { "label": "English", "href": "/" },
+    "nav": [
+      { "label": "Experience", "href": "#experience" },
+      { "label": "Cases", "href": "#cases" },
+      { "label": "Services", "href": "#services" },
+      { "label": "Additional knowledge", "href": "#knowledge" },
+      { "label": "Work formats", "href": "#work-formats" },
+      { "label": "Feedback", "href": "#feedback" },
+      { "label": "Media & conferences", "href": "#media" },
+      { "label": "Contacts", "href": "#contacts" }
+    ]
+  },
+  "hero": {
+    "tags": "SaaS, B2B, B2C, enterprise",
+    "title": ["Design services", "for digital products"],
+    "links": [
+      { "label": "Telegram", "href": "https://t.me/", "external": true },
+      { "label": "Email", "href": "mailto:work@takov.com" }
+    ]
+  },
+  "experience": {
+    "title": "Experience",
+    "lead": "8+ years designing complex digital products: fintech, telecom, logistics and internal enterprise tools. I join teams at any stage, from discovery to design system support.",
+    "items": [
+      {
+        "company": "klarna",
+        "category": "fintech / mobile apps",
+        "description": "Checkout and payment flows used by millions of shoppers across Europe. Redesigned onboarding and dispute flows to reduce support load.",
+        "open": true
+      },
+      {
+        "company": "billine",
+        "category": "telecom / b2b",
+        "description": "TODO(content): описание проекта Billine."
+      },
+      {
+        "company": "koleidoscope",
+        "category": "edtech / web platform",
+        "description": "TODO(content): описание проекта Koleidoscope."
+      },
+      {
+        "company": "soroca",
+        "category": "fintech / admin panels",
+        "description": "TODO(content): описание проекта Soroca."
+      },
+      {
+        "company": "sensus",
+        "category": "payments / saas",
+        "description": "TODO(content): описание проекта Sensus."
+      }
+    ]
+  },
+  "cases": {
+    "title": "Cases",
+    "items": [
+      {
+        "title": "Sensus payment system",
+        "tags": "fintech / b2b",
+        "image": { "src": "/images/cases/sensus.webp", "alt": "Sensus payment system interface" }
+      },
+      {
+        "title": "Billine business portal",
+        "tags": "telecom / b2b",
+        "image": { "src": "/images/cases/billine.webp", "alt": "Billine business portal interface" }
+      },
+      {
+        "title": "Corridor logistics platform",
+        "tags": "logistics / enterprise",
+        "placeholder": "muted"
+      },
+      {
+        "title": "Kalinaedu learning platform",
+        "tags": "edtech / b2c",
+        "placeholder": "dark"
+      }
+    ]
+  },
+  "services": {
+    "title": "Services",
+    "lead": "From research to a working design system: I help product teams ship complex interfaces faster and with fewer iterations.",
+    "image": {
+      "src": "/images/services.webp",
+      "alt": "Mobile interface designed for the Ping proxy network"
+    },
+    "items": [
+      {
+        "title": "Interfaces design",
+        "description": "Web and mobile interfaces for SaaS, B2B and enterprise products: user flows, prototypes, UI and handoff to development.",
+        "open": true
+      },
+      { "title": "Consulting & audit", "description": "TODO(content): описание услуги." },
+      { "title": "Management", "description": "TODO(content): описание услуги." },
+      { "title": "Design systems", "description": "TODO(content): описание услуги." },
+      { "title": "Staff training", "description": "TODO(content): описание услуги." }
+    ],
+    "note": "Every project starts with a free 30-minute call to align goals, scope and timeline."
+  },
+  "knowledge": {
+    "title": "Additional knowledge",
+    "lead": "Beyond design, I work with analytics, AI tools and front-end code, so every decision is backed by data and easy to implement.",
+    "note": "Tools I use every day are listed in each card.",
+    "items": [
+      {
+        "number": "01",
+        "title": "Product approach",
+        "description": "User research, product metrics and A/B tests. Hotjar, Clarity and spreadsheets help validate every decision.",
+        "tools": [
+          { "name": "Hotjar", "src": "/images/tools/hotjar.png", "width": 20, "height": 24 },
+          {
+            "name": "Microsoft Clarity",
+            "src": "/images/tools/clarity.png",
+            "width": 22,
+            "height": 24
+          },
+          { "name": "Google Sheets", "src": "/images/tools/sheets.png", "width": 18, "height": 24 },
+          { "name": "Microsoft Excel", "src": "/images/tools/excel.png", "width": 26, "height": 24 }
+        ]
+      },
+      {
+        "number": "02",
+        "title": "AI knowledge",
+        "description": "AI-assisted research and prototyping with Cursor, Claude and ChatGPT to speed up delivery without losing quality.",
+        "tools": [
+          { "name": "Cursor", "src": "/images/tools/cursor.png", "width": 30, "height": 30 },
+          { "name": "Claude", "src": "/images/tools/claude.png", "width": 24, "height": 26 },
+          { "name": "ChatGPT", "src": "/images/tools/chatgpt.png", "width": 32, "height": 32 }
+        ]
+      },
+      {
+        "number": "03",
+        "title": "Development knowledge",
+        "description": "Vue, React, JavaScript and VS Code to design within real technical constraints and speak the developers’ language.",
+        "tools": [
+          { "name": "Vue", "src": "/images/tools/vue.png", "width": 30, "height": 25 },
+          { "name": "React", "src": "/images/tools/react.png", "width": 30, "height": 26 },
+          {
+            "name": "JavaScript",
+            "src": "/images/tools/javascript.png",
+            "width": 24,
+            "height": 24
+          },
+          { "name": "VS Code", "src": "/images/tools/vscode.png", "width": 28, "height": 27 }
+        ]
+      },
+      {
+        "number": "04",
+        "title": "Languages",
+        "description": "English, Russian and Italian. Comfortable working with international teams across time zones."
+      }
+    ]
+  },
+  "workFormats": {
+    "title": "Work formats",
+    "lead": "Pick the format that fits your product stage and budget.",
+    "items": [
+      {
+        "number": "01",
+        "title": "time & material",
+        "description": "Hourly billing with flexible scope. Best for evolving products and ongoing iterations."
+      },
+      {
+        "number": "02",
+        "title": "retainer",
+        "description": "A fixed number of hours every month and priority support for your product team."
+      },
+      {
+        "number": "03",
+        "title": "fix price",
+        "description": "Fixed budget and deadline for a clearly defined scope, such as an audit or MVP."
+      }
+    ],
+    "portrait": {
+      "src": "/images/portrait.webp",
+      "alt": "Portrait of Ilya Abesadze in orange light"
+    }
+  },
+  "feedback": {
+    "title": "Feedback",
+    "count": 21,
+    "more": 3,
+    "items": [
+      {
+        "client": "Billline",
+        "categories": ["fintech", "b2b", "b2c"],
+        "roles": ["management", "product design"]
+      },
+      { "client": "Thedex", "categories": ["fintech", "b2b", "b2c"], "roles": ["product design"] },
+      { "client": "Payplus", "categories": ["fintech", "b2c"], "roles": ["ux/ui design"] },
+      { "client": "Codenote", "categories": ["digital agency"], "roles": ["ux/ui design"] },
+      {
+        "client": "Corridor",
+        "categories": ["logistics"],
+        "roles": ["art direction", "ux/ui design"]
+      },
+      { "client": "Leipartner", "categories": ["consulting"], "roles": ["product design"] },
+      { "client": "FSA", "categories": ["training agency"], "roles": ["ux/ui design"] },
+      { "client": "Bitray", "categories": ["fintech", "b2c"], "roles": ["product design"] },
+      { "client": "WOH", "categories": ["charitable foundation"], "roles": ["ux/ui design"] },
+      { "client": "Legalpartners", "categories": ["legal services"], "roles": ["ux/ui design"] },
+      { "client": "Kalinaedu", "categories": ["edtech", "b2c"], "roles": ["product design"] }
+    ]
+  },
+  "media": {
+    "title": "Media & conferences",
+    "more": 3,
+    "items": [
+      {
+        "text": "Talk on designing enterprise interfaces with domain-driven design: how to map business domains to UI.",
+        "caption": "2026 / DDD conference",
+        "placeholder": "light"
+      },
+      {
+        "text": "How to scale one design system across several product teams without slowing them down.",
+        "caption": "2025 / design systems meetup",
+        "image": {
+          "src": "/images/media/design-systems-meetup.webp",
+          "alt": "Ilya speaking on stage at a design systems meetup"
+        }
+      },
+      {
+        "text": "Conversation about the designer’s role in B2B products and working with complex requirements.",
+        "caption": "2024 / product design podcast",
+        "image": {
+          "src": "/images/media/podcast.webp",
+          "alt": "Mobile help center interface on a dark background"
+        }
+      }
+    ]
+  },
+  "contacts": {
+    "title": "Contacts",
+    "lead": "Tell me about your product. I usually reply within one business day.",
+    "links": [
+      { "label": "work@takov.com", "href": "mailto:work@takov.com" },
+      { "label": "+39\u00a0(345)\u00a0456\u00a053\u00a073", "href": "tel:+393454565373" },
+      { "label": "Telegram", "href": "https://t.me/", "external": true },
+      { "label": "Whatsapp", "href": "https://wa.me/393454565373", "external": true }
+    ],
+    "location": "Lucca, Italy",
+    "social": [
+      { "label": "Instagram", "href": "https://www.instagram.com/", "external": true },
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/", "external": true }
+    ],
+    "year": "2026"
+  }
+}

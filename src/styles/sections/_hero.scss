@@ -1,0 +1,42 @@
+@use '../abstracts' as *;
+
+.hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  min-height: calc(100svh - var(--header-height));
+
+  @include adaptive(padding-top, 60, 100);
+  @include adaptive(padding-bottom, 120, 180);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    @include adaptive(gap, 28, 40);
+  }
+
+  &__tags {
+    @include text(ui-caps);
+  }
+
+  &__title {
+    @include text(display);
+  }
+
+  &__title-line {
+    display: block;
+  }
+
+  &__links {
+    @include text(ui-caps);
+
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--space-28);
+  }
+
+  &__link:hover {
+    color: var(--color-text-muted);
+  }
+}

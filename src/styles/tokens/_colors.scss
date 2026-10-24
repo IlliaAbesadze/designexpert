@@ -1,0 +1,33 @@
+// Цвета из переменных Figma (коллекция color). Только здесь допускаются hex.
+
+$palette: (
+  'black': #000,
+  'white': #fff,
+  'gray-50': #f8f8f8,
+  'gray-100': #f4f4f4,
+  'gray-500': #959595,
+  'gray-700': #444,
+  'gray-900': #1c1c1c,
+);
+
+// Семантические роли → примитивы. Компоненты используют только их.
+$roles: (
+  'bg': 'white',
+  'bg-muted': 'gray-50',
+  'bg-placeholder': 'gray-100',
+  'bg-inverse': 'gray-900',
+  'text': 'black',
+  'text-muted': 'gray-500',
+  'text-inverse': 'white',
+  'border': 'gray-500',
+  'border-subtle': 'gray-100',
+  'border-strong': 'black',
+  'border-inverse': 'gray-700',
+  'border-inverse-strong': 'white',
+  'icon': 'black',
+  'focus': 'black',
+  'focus-inverse': 'white',
+);
+
+// Полупрозрачная граница карточек знаний (rgba(49,49,49,.25) в макете).
+$border-card: rgb(49 49 49 / 25%);

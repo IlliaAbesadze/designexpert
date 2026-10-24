@@ -1,0 +1,34 @@
+@use '../abstracts' as *;
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.skip-link {
+  @include text(ui-caps-s);
+
+  position: absolute;
+  top: var(--space-8);
+  left: var(--space-8);
+  z-index: 100;
+  padding: var(--space-8) var(--space-14);
+  color: var(--color-text-inverse);
+  background-color: var(--color-bg-inverse);
+  transform: translateY(-200%);
+
+  &:focus-visible {
+    transform: none;
+  }
+}
+
+@include mq(null, desktop) {
+  .is-desktop-only {
+    display: none;
+  }
+}
+
+@include mq(desktop) {
+  .is-mobile-only {
+    display: none;
+  }
+}

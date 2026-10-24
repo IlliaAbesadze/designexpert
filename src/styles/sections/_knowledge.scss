@@ -1,0 +1,100 @@
+@use '../abstracts' as *;
+
+.knowledge {
+  @include mq(desktop) {
+    padding-top: var(--section-space);
+    background-color: var(--color-bg-muted);
+  }
+
+  &__list {
+    display: grid;
+    gap: var(--grid-gap);
+
+    @include mq(tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  // Порядок в макете десктопа: 01 02 / 04 03
+  &__item:nth-child(3) {
+    @include mq(desktop) {
+      grid-area: 2 / 2;
+    }
+  }
+
+  &__item:nth-child(4) {
+    @include mq(desktop) {
+      grid-area: 2 / 1;
+    }
+  }
+}
+
+.knowledge-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-28);
+  height: 100%;
+  border-top: 1px solid var(--color-border-card);
+  border-left: 1px solid var(--color-border-card);
+
+  @include adaptive(min-height, 292, 340);
+  @include adaptive(padding-block, 28, 40);
+  @include adaptive(padding-inline, 16, 28);
+
+  // Рамки карточек на десктопе — как в макете
+  @include mq(desktop) {
+    .knowledge__item:nth-child(2) > & {
+      border-bottom: 1px solid var(--color-border-card);
+    }
+
+    .knowledge__item:nth-child(3) > & {
+      border-top: 0;
+    }
+
+    .knowledge__item:nth-child(4) > & {
+      border: 0;
+    }
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__number {
+    @include text(title-s);
+
+    display: none;
+
+    @include mq(desktop) {
+      display: block;
+    }
+  }
+
+  &__tools {
+    display: flex;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+
+    @include adaptive(gap, 14, 28);
+
+    @include mq(desktop) {
+      max-width: fluid-d(380, 343);
+    }
+  }
+
+  &__title {
+    @include text(heading);
+  }
+
+  &__description {
+    @include text(body);
+
+    color: var(--color-text-muted);
+  }
+}

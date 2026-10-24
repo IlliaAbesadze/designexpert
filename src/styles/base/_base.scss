@@ -1,0 +1,30 @@
+@use '../abstracts' as *;
+
+html {
+  scroll-behavior: smooth;
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  @include text(body);
+
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  text-rendering: optimizespeed;
+}
+
+:focus-visible {
+  @include focus-ring;
+}
+
+::selection {
+  color: var(--color-text-inverse);
+  background-color: var(--color-text);
+}
+
+[id] {
+  scroll-margin-top: var(--space-20);
+}

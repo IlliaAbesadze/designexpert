@@ -1,0 +1,41 @@
+@use '../abstracts' as *;
+
+// Иконки Plus / Minus из макета: 15px (S, мобайл) → 20px (M, десктоп).
+.toggle-icon {
+  --line: 1px;
+
+  position: relative;
+  flex-shrink: 0;
+  color: var(--color-icon);
+
+  @include adaptive((width, height), 15, 20);
+
+  @include mq(desktop) {
+    --line: 2px;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    background-color: currentcolor;
+    content: '';
+  }
+
+  &::before {
+    top: calc(50% - var(--line) / 2);
+    right: 0;
+    left: 0;
+    height: var(--line);
+  }
+
+  &::after {
+    top: 0;
+    bottom: 0;
+    left: calc(50% - var(--line) / 2);
+    width: var(--line);
+  }
+
+  [open] > .accordion__summary &::after {
+    display: none;
+  }
+}

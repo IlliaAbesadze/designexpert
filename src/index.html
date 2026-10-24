@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{meta.lang}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{meta.title}}</title>
+    <meta name="description" content="{{meta.description}}" />
+    <link rel="canonical" href="{{meta.url}}" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{meta.title}}" />
+    <meta property="og:description" content="{{meta.description}}" />
+    <meta property="og:url" content="{{meta.url}}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="module" src="/scripts/main.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    {{> layout/header}}
+    <main id="main">
+      {{> sections/hero}} {{> sections/experience}} {{> sections/cases}} {{> sections/services}} {{>
+      sections/knowledge}} {{> sections/work-formats}} {{> sections/feedback}} {{> sections/media}}
+    </main>
+    {{> layout/footer}}
+  </body>
+</html>

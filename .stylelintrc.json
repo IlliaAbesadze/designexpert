@@ -1,0 +1,49 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "rules": {
+    "selector-class-pattern": [
+      "^(?:[a-z][a-z0-9]*(?:-[a-z0-9]+)*(?:__[a-z0-9]+(?:-[a-z0-9]+)*)?(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?|(?:is|has)-[a-z0-9-]+)$",
+      {
+        "message": "Используйте БЭМ: block__element--modifier или состояние is-*/has-*"
+      }
+    ],
+    "selector-max-id": 0,
+    "selector-max-type": [
+      0,
+      {
+        "ignore": ["child", "compounded", "descendant"]
+      }
+    ],
+    "declaration-no-important": true,
+    "max-nesting-depth": [
+      3,
+      {
+        "ignoreAtRules": ["include", "media"]
+      }
+    ],
+    "scss/at-mixin-pattern": "^[a-z][a-z0-9-]*$",
+    "scss/at-function-pattern": "^[a-z][a-z0-9-]*$",
+    "scss/dollar-variable-pattern": "^[a-z][a-z0-9-]*$",
+    "scss/percent-placeholder-pattern": "^[a-z][a-z0-9-]*$",
+    "color-named": "never",
+    "color-no-hex": true,
+    "alpha-value-notation": null,
+    "scss/dollar-variable-empty-line-before": null,
+    "custom-property-pattern": null
+  },
+  "overrides": [
+    {
+      "files": ["src/styles/tokens/**/*.scss"],
+      "rules": {
+        "color-no-hex": null
+      }
+    },
+    {
+      "files": ["src/styles/base/_reset.scss", "src/styles/base/_base.scss"],
+      "rules": {
+        "selector-max-type": null,
+        "property-no-vendor-prefix": null
+      }
+    }
+  ]
+}

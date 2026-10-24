@@ -1,0 +1,89 @@
+@use '../abstracts' as *;
+
+.experience__list {
+  border-top-color: var(--color-border-subtle);
+
+  @include mq(desktop) {
+    border-top-color: var(--color-border);
+
+    // Раскрытый пункт выделен чёрными разделителями сверху и снизу
+    &:has(> [open]:first-child) {
+      border-top-color: var(--color-border-strong);
+    }
+  }
+}
+
+.experience-item {
+  @include mq(desktop) {
+    &[open],
+    &:has(+ [open]) {
+      border-bottom-color: var(--color-border-strong);
+    }
+  }
+
+  &__summary {
+    display: grid;
+    grid-template-areas:
+      'company icon'
+      'category category';
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    row-gap: var(--space-14);
+
+    @include mq(desktop) {
+      grid-template-areas: 'company meta';
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: var(--grid-gap);
+    }
+  }
+
+  &__company {
+    @include text(title);
+
+    grid-area: company;
+  }
+
+  &__meta {
+    display: contents;
+
+    @include mq(desktop) {
+      display: flex;
+      grid-area: meta;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-20);
+    }
+
+    .toggle-icon {
+      grid-area: icon;
+    }
+  }
+
+  &__category {
+    @include text(ui-caps);
+
+    grid-area: category;
+    color: var(--color-text-muted);
+
+    [open] > .accordion__summary &,
+    .accordion__summary:hover & {
+      color: var(--color-text);
+    }
+  }
+
+  &__content {
+    @include adaptive(padding-top, 14, 40);
+
+    @include mq(desktop) {
+      padding-left: calc(50% + var(--grid-gap) / 2);
+    }
+  }
+
+  &__description {
+    @include text(body);
+
+    @include mq(desktop) {
+      max-width: 64%;
+    }
+  }
+}

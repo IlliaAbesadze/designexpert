@@ -1,0 +1,38 @@
+@use 'sass:meta';
+@use '../abstracts' as *;
+@use 'colors';
+@use 'typography' as typo;
+
+// Токены как CSS custom properties — ими пользуются компоненты.
+:root {
+  @each $name, $value in colors.$palette {
+    --color-#{$name}: #{$value};
+  }
+
+  @each $role, $ref in colors.$roles {
+    --color-#{$role}: var(--color-#{$ref});
+  }
+
+  --color-border-card: #{colors.$border-card};
+
+  @each $name, $stack in typo.$font-families {
+    --font-#{$name}: #{meta.inspect($stack)};
+  }
+
+  @each $key, $value in $spacing {
+    --space-#{$key}: #{rem($value)};
+  }
+
+  // Fluid-ритм страницы (мобильный макет → десктопный)
+  --gutter: #{fluid-m(16, 60)};
+  --grid-gap: #{fluid-m(28, 40)};
+  --section-space: #{fluid-m(120, 180)};
+  --header-height: calc(var(--space-60) + #{fluid-m(52, 60)});
+
+  @include mq(desktop) {
+    --gutter: #{fluid-d(60, 16)};
+    --grid-gap: #{fluid-d(40, 28)};
+    --section-space: #{fluid-d(180, 120)};
+    --header-height: calc(var(--space-60) + #{fluid-d(60, 52)});
+  }
+}

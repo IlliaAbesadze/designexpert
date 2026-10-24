@@ -1,0 +1,18 @@
+@use '../abstracts' as *;
+
+// Логотип инструмента на круглой подложке: 40px (мобайл) → 52px (десктоп).
+.tool-badge {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background-color: var(--color-bg-placeholder);
+  border-radius: 50%;
+
+  @include adaptive((width, height), 40, 52);
+
+  &__logo {
+    max-width: 75%;
+    height: auto;
+    object-fit: contain;
+  }
+}

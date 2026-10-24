@@ -1,0 +1,97 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'config' as *;
+@use 'functions' as *;
+@use '../tokens/typography' as typo;
+
+/// Медиазапрос mobile-first.
+/// @example @include mq(desktop) { … }
+/// @example @include mq(tablet, desktop) { … } // [768, 1024)
+@mixin mq($from: null, $to: null) {
+  $min: null;
+  $max: null;
+
+  @if $from {
+    $min: map.get($breakpoints, $from);
+
+    @if not $min {
+      @error 'mq(): неизвестный брейкпоинт `#{$from}`';
+    }
+  }
+
+  @if $to {
+    $max: map.get($breakpoints, $to);
+
+    @if not $max {
+      @error 'mq(): неизвестный брейкпоинт `#{$to}`';
+    }
+  }
+
+  @if $min and $max {
+    @media (width >= #{$min}px) and (width < #{$max}px) {
+      @content;
+    }
+  } @else if $min {
+    @media (width >= #{$min}px) {
+      @content;
+    }
+  } @else if $max {
+    @media (width < #{$max}px) {
+      @content;
+    }
+  }
+}
+
+/// Адаптивное fluid-свойство: значение мобильного макета → значение десктопного.
+/// Отдаёт fluid-m() для мобильной раскладки и fluid-d() — для десктопной.
+/// @example @include adaptive(padding-bottom, 120, 180);
+/// @example @include adaptive((padding-left, padding-right), 16, 60);
+@mixin adaptive($props, $mobile, $desktop) {
+  @each $prop in $props {
+    #{$prop}: fluid-m($mobile, $desktop);
+  }
+
+  @include mq(desktop) {
+    @each $prop in $props {
+      #{$prop}: fluid-d($desktop, $mobile);
+    }
+  }
+}
+
+/// Текстовый стиль из токенов типографики (см. tokens/_typography.scss).
+/// @example @include text(title);
+@mixin text($name) {
+  $style: map.get(typo.$text-styles, $name);
+
+  @if not $style {
+    @error 'text(): неизвестный текстовый стиль `#{$name}`';
+  }
+
+  $m: map.get($style, mobile);
+  $d: map.get($style, desktop);
+
+  font-family: var(--font-#{map.get($style, family)});
+  font-weight: map.get($style, weight);
+  letter-spacing: map.get($style, tracking);
+  text-transform: map.get($style, transform) or none;
+
+  @include adaptive(font-size, list.nth($m, 1), list.nth($d, 1));
+  @include adaptive(line-height, list.nth($m, 2), list.nth($d, 2));
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin focus-ring($color: var(--color-focus)) {
+  outline: 2px solid $color;
+  outline-offset: 4px;
+}

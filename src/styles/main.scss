@@ -1,0 +1,22 @@
+// Точка входа стилей. Порядок: токены → база → раскладка → компоненты → секции → утилиты.
+
+@use 'tokens/root';
+@use 'base/reset';
+@use 'base/base';
+@use 'layout/container';
+@use 'layout/header';
+@use 'components/toggle-icon';
+@use 'components/accordion';
+@use 'components/section-head';
+@use 'components/tool-badge';
+@use 'components/more-badge';
+@use 'sections/hero';
+@use 'sections/experience';
+@use 'sections/cases';
+@use 'sections/services';
+@use 'sections/knowledge';
+@use 'sections/work-formats';
+@use 'sections/feedback';
+@use 'sections/media';
+@use 'sections/contacts';
+@use 'base/utilities';

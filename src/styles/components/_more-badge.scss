@@ -1,0 +1,13 @@
+@use '../abstracts' as *;
+
+// Бейдж «+N» в круге: 72px (мобайл) → 120px (десктоп).
+.more-badge {
+  @include text(lead-s);
+  @include adaptive((width, height), 72, 120);
+
+  display: grid;
+  place-items: center;
+  margin-inline: auto;
+  border: 1px solid var(--color-border-inverse);
+  border-radius: 50%;
+}

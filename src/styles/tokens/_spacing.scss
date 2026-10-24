@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use 'sass:meta';
+
+// Шкала отступов из переменных Figma (spacing-*). Значения в px макета.
+$spacing: (
+  0: 0,
+  4: 4,
+  8: 8,
+  14: 14,
+  16: 16,
+  20: 20,
+  28: 28,
+  40: 40,
+  60: 60,
+  100: 100,
+  120: 120,
+  180: 180,
+  320: 320,
+);
+
+/// Возвращает значение токена отступа и падает на сборке, если такого нет.
+/// @example @include adaptive(gap, space(28), space(100));
+@function space($key) {
+  @if not map.has-key($spacing, $key) {
+    @error 'space(): токена spacing-#{$key} нет в шкале #{map.keys($spacing)}';
+  }
+
+  @return map.get($spacing, $key);
+}

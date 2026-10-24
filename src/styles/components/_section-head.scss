@@ -1,0 +1,39 @@
+@use '../abstracts' as *;
+
+.section-head {
+  @include adaptive(margin-bottom, 28, 100);
+
+  row-gap: var(--space-14);
+
+  &__title {
+    @include text(heading);
+  }
+
+  &--light &__title {
+    @include text(heading-s);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-14);
+  }
+
+  &__lead {
+    @include text(lead);
+
+    color: var(--color-text-muted);
+
+    @include mq(desktop) {
+      color: var(--color-text);
+    }
+  }
+
+  &__note {
+    @include text(body);
+
+    @include mq(desktop) {
+      color: var(--color-text-muted);
+    }
+  }
+}

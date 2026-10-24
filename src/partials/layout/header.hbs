@@ -1,0 +1,46 @@
+<header class="header container" data-testid="header">
+  <p class="header__intro">
+    {{#each header.intro}}<span class="header__intro-line">{{this}}</span>{{/each}}
+  </p>
+  <nav class="header__nav" aria-label="Main">
+    {{! Меню на Popover API: открывается и закрывается без JS, Esc и клик мимо закрывают его }}
+    <button
+      class="header__burger"
+      type="button"
+      popovertarget="site-menu"
+      data-testid="menu-toggle"
+    >
+      <span class="burger" aria-hidden="true"></span>
+      <span class="visually-hidden">Open {{header.menuLabel}}</span>
+    </button>
+    <div class="menu" id="site-menu" popover data-js="menu" data-testid="menu">
+      <div class="menu__bar container">
+        <button
+          class="menu__close"
+          type="button"
+          popovertarget="site-menu"
+          popovertargetaction="hide"
+          data-testid="menu-close"
+        >
+          <span class="burger burger--close" aria-hidden="true"></span>
+          <span class="visually-hidden">Close {{header.menuLabel}}</span>
+        </button>
+      </div>
+      <ul class="menu__list container">
+        {{#each header.nav}}
+          <li class="menu__item"><a
+              class="menu__link"
+              href="{{href}}"
+              data-js="menu-link"
+            >{{label}}</a></li>
+        {{/each}}
+      </ul>
+    </div>
+  </nav>
+  <a
+    class="header__lang is-desktop-only"
+    href="{{header.language.href}}"
+    hreflang="en"
+    aria-current="page"
+  >{{header.language.label}}</a>
+</header>

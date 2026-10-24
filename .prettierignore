@@ -1,0 +1,10 @@
+dist
+node_modules
+package-lock.json
+playwright-report
+test-results
+.lighthouseci
+docs/design/figma
+# Handlebars-шаблоны: парсер glimmer не поддерживает партиалы и блоки в атрибутах
+src/**/*.hbs
+src/index.html

@@ -1,0 +1,198 @@
+// Шрифты и текстовые стили из Figma (Desktop/* и Mobile/*).
+// mobile / desktop — (font-size, line-height) в px макетов 375 и 1920.
+
+$font-families: (
+  mono: (
+    'Roboto Mono Variable',
+    'Roboto Mono',
+    ui-monospace,
+    'SFMono-Regular',
+    monospace,
+  ),
+  sans: (
+    'Roboto Variable',
+    'Roboto',
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif,
+  ),
+);
+
+$text-styles: (
+  // Titles/XL — заголовок первого экрана
+  display: (
+      family: mono,
+      weight: 300,
+      tracking: -0.08em,
+      transform: uppercase,
+      mobile: (
+        32,
+        40,
+      ),
+      desktop: (
+        64,
+        64,
+      ),
+    ),
+  // Titles/L — заголовки секций на тёмном и сером фоне
+  heading: (
+      family: mono,
+      weight: 400,
+      tracking: -0.04em,
+      mobile: (
+        16,
+        20,
+      ),
+      desktop: (
+        24,
+        28,
+      ),
+    ),
+  // Titles/M — заголовки секций на белом фоне
+  heading-s: (
+      family: mono,
+      weight: 400,
+      tracking: -0.04em,
+      mobile: (
+        16,
+        20,
+      ),
+      desktop: (
+        20,
+        24,
+      ),
+    ),
+  // Titles/L ↔ Mobile/Titles/M — названия в списках и карточках
+  title: (
+      family: mono,
+      weight: 400,
+      tracking: -0.04em,
+      mobile: (
+        14,
+        18,
+      ),
+      desktop: (
+        24,
+        28,
+      ),
+    ),
+  // Titles/S — номера карточек
+  title-s: (
+      family: mono,
+      weight: 400,
+      tracking: -0.04em,
+      mobile: (
+        14,
+        18,
+      ),
+      desktop: (
+        16,
+        20,
+      ),
+    ),
+  // Descriptions/L — вводные абзацы
+  lead: (
+      family: sans,
+      weight: 400,
+      tracking: 0,
+      transform: uppercase,
+      mobile: (
+        12,
+        16,
+      ),
+      desktop: (
+        24,
+        36,
+      ),
+    ),
+  // Mobile/Descriptions/L ↔ Desktop/Descriptions/L — тексты выступлений
+  lead-s: (
+      family: sans,
+      weight: 400,
+      tracking: 0,
+      transform: uppercase,
+      mobile: (
+        14,
+        18,
+      ),
+      desktop: (
+        24,
+        36,
+      ),
+    ),
+  // Descriptions/XS ↔ Mobile/Descriptions/S
+  body: (
+      family: sans,
+      weight: 400,
+      tracking: 0,
+      transform: uppercase,
+      mobile: (
+        12,
+        16,
+      ),
+      desktop: (
+        14,
+        18,
+      ),
+    ),
+  // Mobile/Descriptions/L ↔ Desktop/Descriptions/XS
+  body-l: (
+      family: sans,
+      weight: 400,
+      tracking: 0,
+      transform: uppercase,
+      mobile: (
+        14,
+        18,
+      ),
+      desktop: (
+        14,
+        18,
+      ),
+    ),
+  // UI/S-Caps
+  ui-caps: (
+      family: mono,
+      weight: 500,
+      tracking: 0,
+      transform: uppercase,
+      mobile: (
+        12,
+        16,
+      ),
+      desktop: (
+        16,
+        20,
+      ),
+    ),
+  // UI/XS-Caps
+  ui-caps-s: (
+      family: mono,
+      weight: 500,
+      tracking: 0,
+      transform: uppercase,
+      mobile: (
+        12,
+        16,
+      ),
+      desktop: (
+        14,
+        18,
+      ),
+    ),
+  // UI/S
+  ui: (
+      family: mono,
+      weight: 400,
+      tracking: 0,
+      mobile: (
+        14,
+        18,
+      ),
+      desktop: (
+        16,
+        20,
+      ),
+    )
+);
