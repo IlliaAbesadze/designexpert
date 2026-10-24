@@ -28,5 +28,5 @@
 
 - Ссылки: Telegram, Instagram, LinkedIn (сейчас заглушки на корневые домены),
   ссылки на выступления в Media (если есть — заголовок станет ссылкой).
-- Домен для `canonical` / `og:url` (сейчас `https://design.expert/`).
+- Свой домен для `canonical` / `og:url` (сейчас `https://design-expert.netlify.app/`).
 - Изображения — см. `docs/design/assets.md`.
