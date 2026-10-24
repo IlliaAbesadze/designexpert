@@ -11,7 +11,7 @@
     transition:
       opacity var(--duration-slow) var(--ease-out),
       transform var(--duration-slow) var(--ease-out),
-      clip-path var(--duration-slow) var(--ease-out);
+      scale var(--duration-slow) var(--ease-out);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
@@ -24,23 +24,18 @@
     transform: translate3d(0, var(--motion-shift), 0);
   }
 
-  // Картинка раскрывается маской сверху вниз и чуть «садится» по масштабу
+  // Картинка проявляется и чуть «садится» по масштабу. Без clip-path:
+  // Safari и Firefox (по спецификации IntersectionObserver) считают картинку
+  // под маской невидимой и не запускают её ленивую загрузку.
   [data-anim='reveal'] {
-    // scale — для появления, transform остаётся свободным для hover-зума
     &.is-inview > img {
       transition:
         scale var(--duration-line) var(--ease-out) var(--reveal-delay, 0ms),
         transform var(--duration-slow) var(--ease-out);
     }
 
-    // Явные inset() с обеих сторон: переход интерполируется во всех
-    // браузерах (переход к clip-path: none в Safari не анимируется)
-    &.is-inview {
-      clip-path: inset(0);
-    }
-
     &:not(.is-inview) {
-      clip-path: inset(0 0 100% 0);
+      opacity: 0;
 
       > img {
         scale: 1.08;

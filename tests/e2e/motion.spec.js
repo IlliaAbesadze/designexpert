@@ -42,8 +42,8 @@ test.describe('@motion появления', () => {
     const media = page.locator('[data-anim="reveal"]').first();
     await media.scrollIntoViewIfNeeded();
     await expect
-      .poll(() => media.evaluate((el) => getComputedStyle(el).clipPath), { timeout: 4000 })
-      .toMatch(/inset\(0(px)?\)/);
+      .poll(() => media.evaluate((el) => getComputedStyle(el).opacity), { timeout: 4000 })
+      .toBe('1');
     expect(await media.locator('img').evaluate((img) => img.complete && img.naturalWidth > 0)).toBe(
       true,
     );
