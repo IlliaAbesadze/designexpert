@@ -1,6 +1,6 @@
 @use '../abstracts' as *;
 
-// Анимации появления и прочерчивания линий.
+// Анимации появления (data-anim) и линий списков (data-line).
 // Стартовые (скрытые) состояния действуют только под .motion-ready —
 // класс ставит JS (scripts/modules/reveal.js). Без JS и при
 // prefers-reduced-motion контент виден сразу.
@@ -26,28 +26,49 @@
 
   // Картинка раскрывается маской сверху вниз и чуть «садится» по масштабу
   [data-anim='reveal'] {
+    // scale — для появления, transform остаётся свободным для hover-зума
     &.is-inview > img {
-      transition: transform var(--duration-line) var(--ease-out);
-      transition-delay: var(--reveal-delay, 0ms);
+      transition:
+        scale var(--duration-line) var(--ease-out) var(--reveal-delay, 0ms),
+        transform var(--duration-slow) var(--ease-out);
     }
 
     &:not(.is-inview) {
       clip-path: inset(0 0 100% 0);
 
       > img {
-        transform: scale(1.08);
+        scale: 1.08;
       }
     }
   }
+}
 
-  [data-line].is-inview::after {
-    transition:
-      transform var(--duration-line) var(--ease-in-out) var(--reveal-delay, 0ms),
-      background-color var(--duration-fast) ease-out;
+// Линии списков привязаны к скроллу: у нижнего края экрана линии нет,
+// к середине экрана она дотягивается на всю ширину; при скролле вверх —
+// укорачивается обратно. Основной путь — CSS scroll-driven animations
+// (без JS, на компоновщике). Фолбэк для браузеров без animation-timeline —
+// scripts/modules/scroll-lines.js выставляет --line-progress.
+@keyframes line-draw {
+  from {
+    transform: scaleX(0);
   }
 
-  [data-line]:not(.is-inview)::after {
-    transform: scaleX(0);
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    [data-line]::after {
+      animation: line-draw linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 50%;
+    }
+  }
+
+  .has-scroll-lines [data-line]::after {
+    transform: scaleX(var(--line-progress, 1));
   }
 }
 

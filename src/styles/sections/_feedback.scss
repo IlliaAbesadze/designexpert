@@ -45,6 +45,7 @@
 .letter-row {
   display: grid;
   gap: var(--space-14);
+  cursor: pointer;
 
   @include line(bottom, var(--color-border-inverse));
   @include color-transition;

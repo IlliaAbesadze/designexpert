@@ -1,7 +1,7 @@
 <section class="services section container" id="services" aria-labelledby="services-title" data-testid="services">
   {{> components/section-head id="services" title=services.title lead=services.lead modifier="light"}}
   <div class="services__body split">
-    <div class="accordion services__list" data-line>
+    <div class="accordion services__list" data-line="top">
       {{#each services.items}}
         <details class="accordion__item service-item" name="services" data-js="accordion-item" data-line data-testid="service-item">
           <summary class="accordion__summary service-item__summary">

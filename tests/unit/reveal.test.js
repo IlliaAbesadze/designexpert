@@ -28,7 +28,7 @@ describe('initReveal()', () => {
     vi.stubGlobal('innerHeight', 800);
     document.body.innerHTML = `
       <div id="a" data-anim="fade-up"></div>
-      <div id="b" data-line></div>
+      <div id="b" data-anim="fade-up"></div>
       <div id="c" data-anim="fade"></div>`;
     document.getElementById('a').getBoundingClientRect = () => rect(100);
     document.getElementById('b').getBoundingClientRect = () => rect(1200);

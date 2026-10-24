@@ -28,6 +28,7 @@
 
 .media-card {
   display: grid;
+  cursor: pointer;
   gap: var(--space-28);
 
   @include mq(desktop) {
@@ -78,22 +79,47 @@
     }
   }
 
-  &__link {
-    text-decoration: underline;
-    text-underline-position: from-font;
-
-    @include mq(desktop) {
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
+  // Подчёркивание фоном, а не text-decoration: его можно анимировать
+  // и оно корректно переносится на несколько строк
+  &__label {
+    padding-bottom: 0.08em;
+    background: linear-gradient(currentcolor, currentcolor) 0 100% / 100% 1px no-repeat;
+    box-decoration-break: clone;
   }
 
   &__caption {
     @include text(body-l);
 
     color: var(--color-text-muted);
+  }
+}
+
+// При наведении на карточку подчёркивание «стирается» вправо
+// и прорисовывается заново слева
+@keyframes underline-wipe {
+  0% {
+    background-position: 100% 100%;
+    background-size: 100% 1px;
+  }
+
+  50% {
+    background-position: 100% 100%;
+    background-size: 0% 1px;
+  }
+
+  50.01% {
+    background-position: 0 100%;
+    background-size: 0% 1px;
+  }
+
+  100% {
+    background-position: 0 100%;
+    background-size: 100% 1px;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .media-card:hover .media-card__label {
+    animation: underline-wipe var(--duration-slow) var(--ease-in-out);
   }
 }

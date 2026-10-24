@@ -11,7 +11,7 @@
               {{/if}}
             </div>
             <div class="media-card__body" data-line>
-              <h3 class="media-card__text" data-anim="fade-up">{{#if url}}<a class="media-card__link" href="{{url}}">{{text}}</a>{{else}}{{text}}{{/if}}</h3>
+              <h3 class="media-card__text" data-anim="fade-up">{{#if url}}<a class="media-card__link" href="{{url}}"><span class="media-card__label">{{text}}</span></a>{{else}}<span class="media-card__label">{{text}}</span>{{/if}}</h3>
               <p class="media-card__caption" data-anim="fade-up">{{caption}}</p>
             </div>
           </article>
