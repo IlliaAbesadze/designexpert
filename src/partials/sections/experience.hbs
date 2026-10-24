@@ -2,7 +2,7 @@
   {{> components/section-head id="experience" title=experience.title lead=experience.lead modifier="light"}}
   <div class="accordion experience__list" data-line>
     {{#each experience.items}}
-      <details class="accordion__item experience-item" name="experience"{{#if open}} open{{/if}} data-js="accordion-item" data-line data-testid="experience-item">
+      <details class="accordion__item experience-item" name="experience" data-js="accordion-item" data-line data-testid="experience-item">
         <summary class="accordion__summary experience-item__summary">
           <span class="experience-item__company">{{company}}</span>
           <span class="experience-item__meta">

@@ -40,8 +40,15 @@ test('нет ошибок в консоли', async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
+test('аккордеоны по умолчанию закрыты', async ({ page }) => {
+  for (const id of ['experience-item', 'service-item']) {
+    await expect(page.locator(`[data-testid="${id}"][open]`)).toHaveCount(0);
+  }
+});
+
 test('аккордеон опыта: открыт только один пункт', async ({ page }) => {
   const items = page.getByTestId('experience-item');
+  await items.nth(0).locator('summary').click();
   await expect(items.nth(0)).toHaveAttribute('open', '');
 
   await items.nth(1).locator('summary').click();

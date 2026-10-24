@@ -58,6 +58,8 @@ test.describe('@motion появления', () => {
     const items = page.getByTestId('service-item');
     const content = items.nth(1).locator('[data-js="accordion-content"]');
 
+    await items.nth(0).locator('summary').click();
+    await expect(items.nth(0)).toHaveAttribute('open', '');
     await items.nth(1).locator('summary').click();
     expect(await content.evaluate((el) => el.getAnimations().length)).toBeGreaterThan(0);
     await expect(items.nth(0)).not.toHaveAttribute('open');

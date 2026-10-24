@@ -3,7 +3,7 @@
   <div class="services__body split">
     <div class="accordion services__list" data-line>
       {{#each services.items}}
-        <details class="accordion__item service-item" name="services"{{#if open}} open{{/if}} data-js="accordion-item" data-line data-testid="service-item">
+        <details class="accordion__item service-item" name="services" data-js="accordion-item" data-line data-testid="service-item">
           <summary class="accordion__summary service-item__summary">
             <span class="service-item__title">{{title}}</span>
             {{> components/toggle-icon}}
