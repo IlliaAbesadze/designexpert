@@ -1,0 +1,89 @@
+import { expect, test } from '@playwright/test';
+
+const hiddenAnimated = (page) =>
+  page.evaluate(
+    () =>
+      [...document.querySelectorAll('[data-anim]')].filter(
+        (el) =>
+          Number(getComputedStyle(el).opacity) < 1 || getComputedStyle(el).clipPath !== 'none',
+      ).length,
+  );
+
+test.describe('@motion появления', () => {
+  test('элементы ниже экрана скрыты и появляются при скролле', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('html')).toHaveClass(/motion-ready/);
+
+    const card = page.getByTestId('price-card').first();
+    await expect(card).not.toHaveClass(/is-inview/);
+    await card.scrollIntoViewIfNeeded();
+    await expect(card).toHaveClass(/is-inview/);
+    await expect.poll(() => card.evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
+  });
+
+  test('линии прочерчиваются при входе в экран', async ({ page }) => {
+    await page.goto('/');
+    const row = page.getByTestId('letter-row').first();
+    const lineScale = () =>
+      row.evaluate((el) => new DOMMatrix(getComputedStyle(el, '::after').transform).a);
+
+    expect(await lineScale()).toBe(0);
+    await row.scrollIntoViewIfNeeded();
+    await expect.poll(lineScale, { timeout: 4000 }).toBe(1);
+  });
+
+  test('анимации не сдвигают вёрстку (CLS)', async ({ page }) => {
+    await page.goto('/');
+    await page.evaluate(async () => {
+      for (let y = 0; y < document.body.scrollHeight; y += 400) {
+        window.scrollTo(0, y);
+        await new Promise((r) => setTimeout(r, 50));
+      }
+    });
+    const cls = await page.evaluate(
+      () =>
+        new Promise((resolve) => {
+          let value = 0;
+          new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) if (!entry.hadRecentInput) value += entry.value;
+          }).observe({ type: 'layout-shift', buffered: true });
+          setTimeout(() => resolve(value), 300);
+        }),
+    );
+    expect(cls).toBeLessThan(0.05);
+  });
+
+  test('аккордеон раскрывается плавно и не ломает эксклюзивность', async ({ page }) => {
+    await page.goto('/');
+    const items = page.getByTestId('service-item');
+    const content = items.nth(1).locator('[data-js="accordion-content"]');
+
+    await items.nth(1).locator('summary').click();
+    expect(await content.evaluate((el) => el.getAnimations().length)).toBeGreaterThan(0);
+    await expect(items.nth(0)).not.toHaveAttribute('open');
+    await expect(items.nth(1)).toHaveAttribute('open', '');
+  });
+});
+
+test.describe('@motion reduced motion', () => {
+  test.use({ reducedMotion: 'reduce' });
+
+  test('контент виден сразу, движок не включается', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('html')).not.toHaveClass(/motion-ready/);
+    expect(await hiddenAnimated(page)).toBe(0);
+  });
+});
+
+test.describe('@motion без JS', () => {
+  test.use({ javaScriptEnabled: false });
+
+  test('весь контент виден, аккордеоны работают нативно', async ({ page }) => {
+    await page.goto('/');
+    expect(await hiddenAnimated(page)).toBe(0);
+
+    const item = page.getByTestId('experience-item').nth(2);
+    await item.locator('summary').click();
+    await expect(item).toHaveAttribute('open', '');
+  });
+});

@@ -1,11 +1,11 @@
 <section class="feedback section section--inverse" id="feedback" aria-labelledby="feedback-title" data-testid="feedback">
   <div class="feedback__inner container">
-    <h2 class="feedback__title" id="feedback-title">
+    <h2 class="feedback__title" id="feedback-title" data-anim="fade-up">
       {{feedback.title}}<sup class="feedback__count is-desktop-only"><span class="visually-hidden">: </span>{{feedback.count}}</sup>
     </h2>
-    <ul class="feedback__list">
+    <ul class="feedback__list" data-line>
       {{#each feedback.items}}
-        <li class="letter-row" data-testid="letter-row">
+        <li class="letter-row" data-anim="fade" data-line data-testid="letter-row">
           <p class="letter-row__client">{{client}}</p>
           <div class="letter-row__meta">
             <p class="letter-row__tags letter-row__tags--categories">{{#each categories}}{{#if @index}} / {{/if}}{{this}}{{/each}}</p>

@@ -1,18 +1,18 @@
 <section class="media section section--inverse" id="media" aria-labelledby="media-title" data-testid="media">
   <div class="media__inner container">
-    <h2 class="media__title" id="media-title">{{media.title}}</h2>
+    <h2 class="media__title" id="media-title" data-anim="fade-up">{{media.title}}</h2>
     <ul class="media__list">
       {{#each media.items}}
         <li class="media__item">
           <article class="media-card" data-testid="media-card">
-            <div class="media-card__media{{#if placeholder}} media-card__media--{{placeholder}}{{/if}}">
+            <div class="media-card__media{{#if placeholder}} media-card__media--{{placeholder}}{{/if}}" data-anim="reveal">
               {{#if image}}
                 <img class="media-card__image" src="{{image.src}}" alt="{{image.alt}}" width="880" height="520" loading="lazy" decoding="async">
               {{/if}}
             </div>
-            <div class="media-card__body">
-              <h3 class="media-card__text">{{#if url}}<a class="media-card__link" href="{{url}}">{{text}}</a>{{else}}{{text}}{{/if}}</h3>
-              <p class="media-card__caption">{{caption}}</p>
+            <div class="media-card__body" data-line>
+              <h3 class="media-card__text" data-anim="fade-up">{{#if url}}<a class="media-card__link" href="{{url}}">{{text}}</a>{{else}}{{text}}{{/if}}</h3>
+              <p class="media-card__caption" data-anim="fade-up">{{caption}}</p>
             </div>
           </article>
         </li>

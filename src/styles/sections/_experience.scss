@@ -1,23 +1,23 @@
 @use '../abstracts' as *;
 
 .experience__list {
-  border-top-color: var(--color-border-subtle);
+  --line-color: var(--color-border-subtle);
 
   @include mq(desktop) {
-    border-top-color: var(--color-border);
+    --line-color: var(--color-border);
 
     // Раскрытый пункт выделен чёрными разделителями сверху и снизу
     &:has(> [open]:first-child) {
-      border-top-color: var(--color-border-strong);
+      --line-color: var(--color-border-strong);
     }
   }
 }
 
 .experience-item {
   @include mq(desktop) {
-    &[open],
-    &:has(+ [open]) {
-      border-bottom-color: var(--color-border-strong);
+    &[open]:not(.is-closing),
+    &:has(+ [open]:not(.is-closing)) {
+      --line-color: var(--color-border-strong);
     }
   }
 
@@ -61,19 +61,18 @@
 
   &__category {
     @include text(ui-caps);
+    @include color-transition;
 
     grid-area: category;
     color: var(--color-text-muted);
 
-    [open] > .accordion__summary &,
+    [open]:not(.is-closing) > .accordion__summary &,
     .accordion__summary:hover & {
       color: var(--color-text);
     }
   }
 
   &__content {
-    @include adaptive(padding-top, 14, 40);
-
     @include mq(desktop) {
       padding-left: calc(50% + var(--grid-gap) / 2);
     }
@@ -81,6 +80,7 @@
 
   &__description {
     @include text(body);
+    @include adaptive(padding-top, 14, 40);
 
     @include mq(desktop) {
       max-width: 64%;

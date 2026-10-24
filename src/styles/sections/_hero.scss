@@ -36,7 +36,11 @@
     gap: var(--space-28);
   }
 
-  &__link:hover {
-    color: var(--color-text-muted);
+  &__link {
+    @include color-transition;
+
+    &:hover {
+      color: var(--color-text-muted);
+    }
   }
 }

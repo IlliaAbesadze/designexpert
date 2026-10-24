@@ -1,0 +1,83 @@
+@use '../abstracts' as *;
+
+// Анимации появления и прочерчивания линий.
+// Стартовые (скрытые) состояния действуют только под .motion-ready —
+// класс ставит JS (scripts/modules/reveal.js). Без JS и при
+// prefers-reduced-motion контент виден сразу.
+
+.motion-ready {
+  // transition только на входе в экран: скрытие при старте — мгновенное
+  [data-anim].is-inview {
+    transition:
+      opacity var(--duration-slow) var(--ease-out),
+      transform var(--duration-slow) var(--ease-out),
+      clip-path var(--duration-slow) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  [data-anim='fade']:not(.is-inview) {
+    opacity: 0;
+  }
+
+  [data-anim='fade-up']:not(.is-inview) {
+    opacity: 0;
+    transform: translate3d(0, var(--motion-shift), 0);
+  }
+
+  // Картинка раскрывается маской сверху вниз и чуть «садится» по масштабу
+  [data-anim='reveal'] {
+    &.is-inview > img {
+      transition: transform var(--duration-line) var(--ease-out);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+
+    &:not(.is-inview) {
+      clip-path: inset(0 0 100% 0);
+
+      > img {
+        transform: scale(1.08);
+      }
+    }
+  }
+
+  [data-line].is-inview::after {
+    transition:
+      transform var(--duration-line) var(--ease-in-out) var(--reveal-delay, 0ms),
+      background-color var(--duration-fast) ease-out;
+  }
+
+  [data-line]:not(.is-inview)::after {
+    transform: scaleX(0);
+  }
+}
+
+// Первый экран: анимация загрузки на чистом CSS — не ждёт JS и всегда
+// заканчивается видимым состоянием. Заголовок h1 (LCP) не скрываем.
+@keyframes intro-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--motion-shift), 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-intro] {
+    animation: intro-fade-up var(--duration-slow) var(--ease-out) both;
+  }
+
+  @for $i from 1 through 6 {
+    [data-intro='#{$i}'] {
+      animation-delay: calc(#{$i} * var(--motion-stagger));
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 1ms !important; // stylelint-disable-line declaration-no-important
+    animation-duration: 1ms !important; // stylelint-disable-line declaration-no-important
+    animation-iteration-count: 1 !important; // stylelint-disable-line declaration-no-important
+  }
+}

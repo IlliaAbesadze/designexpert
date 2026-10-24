@@ -39,8 +39,7 @@
   }
 
   &__item {
-    border-bottom: 1px solid var(--color-border-inverse);
-
+    @include line(bottom, var(--color-border-inverse));
     @include adaptive(padding-bottom, 14, 28);
   }
 
@@ -50,9 +49,13 @@
     @include text(ui);
   }
 
-  &__link:hover,
-  &__social-link:hover {
-    color: var(--color-text-muted);
+  &__link,
+  &__social-link {
+    @include color-transition;
+
+    &:hover {
+      color: var(--color-text-muted);
+    }
   }
 
   &__bottom {
