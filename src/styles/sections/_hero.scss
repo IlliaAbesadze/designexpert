@@ -37,63 +37,8 @@
   }
 
   &__link {
-    @include color-transition;
-
     &:hover {
       color: var(--color-text-muted);
-    }
-  }
-}
-
-// Уход первого экрана при скролле: шапка и hero прилипают (position: sticky —
-// держит браузер, без дрожания) и растворяются, а следующий блок проезжает
-// поверх них. Анимируется только opacity — на компоновщике, без перерисовки.
-// Без поддержки scroll-driven animations и при prefers-reduced-motion —
-// обычный скролл.
-@keyframes first-screen-fade {
-  0% {
-    opacity: 1;
-  }
-
-  // Растворяется раньше, чем следующий блок доходит до заголовка
-  25% {
-    opacity: 0.15;
-  }
-
-  45% {
-    opacity: 0;
-  }
-
-  100% {
-    visibility: hidden;
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: scroll()) {
-    .header,
-    .hero {
-      position: sticky;
-      z-index: 0;
-      animation: first-screen-fade linear both;
-      animation-timeline: scroll(root block);
-      animation-range: 0 70svh;
-    }
-
-    .header {
-      top: 0;
-    }
-
-    .hero {
-      top: var(--header-height);
-    }
-
-    // Всё после первого экрана — слоем выше
-    .hero ~ *,
-    .contacts {
-      position: relative;
-      z-index: 1;
     }
   }
 }

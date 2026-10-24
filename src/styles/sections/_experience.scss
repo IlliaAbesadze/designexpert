@@ -15,8 +15,8 @@
 
 .experience-item {
   @include mq(desktop) {
-    &[open]:not(.is-closing),
-    &:has(+ [open]:not(.is-closing)) {
+    &[open],
+    &:has(+ [open]) {
       --line-color: var(--color-border-strong);
     }
   }
@@ -61,12 +61,11 @@
 
   &__category {
     @include text(ui-caps);
-    @include color-transition;
 
     grid-area: category;
     color: var(--color-text-muted);
 
-    [open]:not(.is-closing) > .accordion__summary &,
+    [open] > .accordion__summary &,
     .accordion__summary:hover & {
       color: var(--color-text);
     }

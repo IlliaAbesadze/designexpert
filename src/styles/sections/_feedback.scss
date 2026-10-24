@@ -48,7 +48,6 @@
   cursor: pointer;
 
   @include line(bottom, var(--color-border-inverse));
-  @include color-transition;
 
   padding-top: var(--space-28);
 
@@ -94,7 +93,6 @@
 
   &__tags {
     @include text(body);
-    @include color-transition;
 
     color: var(--color-text-muted);
 

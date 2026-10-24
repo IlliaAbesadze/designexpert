@@ -2,7 +2,6 @@
 @use '../abstracts' as *;
 @use 'colors';
 @use 'typography' as typo;
-@use 'motion';
 
 // Токены как CSS custom properties — ими пользуются компоненты.
 :root {
@@ -14,16 +13,6 @@
     --color-#{$role}: var(--color-#{$ref});
   }
 
-  @each $name, $value in motion.$durations {
-    --duration-#{$name}: #{$value};
-  }
-
-  @each $name, $value in motion.$easings {
-    --ease-#{$name}: #{$value};
-  }
-
-  --motion-shift: #{rem(motion.$shift)};
-  --motion-stagger: #{motion.$stagger};
   --color-border-card: #{colors.$border-card};
 
   @each $name, $stack in typo.$font-families {

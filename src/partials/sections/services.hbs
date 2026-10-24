@@ -1,22 +1,22 @@
 <section class="services section container" id="services" aria-labelledby="services-title" data-testid="services">
   {{> components/section-head id="services" title=services.title lead=services.lead modifier="light"}}
   <div class="services__body split">
-    <div class="accordion services__list" data-line="top">
+    <div class="accordion services__list">
       {{#each services.items}}
-        <details class="accordion__item service-item" name="services" data-js="accordion-item" data-line data-testid="service-item">
+        <details class="accordion__item service-item" name="services" data-testid="service-item">
           <summary class="accordion__summary service-item__summary">
             <span class="service-item__title">{{title}}</span>
             {{> components/toggle-icon}}
           </summary>
-          <div class="accordion__content service-item__content" data-js="accordion-content">
+          <div class="accordion__content service-item__content">
             <p class="service-item__description">{{description}}</p>
           </div>
         </details>
       {{/each}}
     </div>
-    <div class="services__media" data-anim="reveal">
+    <div class="services__media">
       <img class="services__image" src="{{services.image.src}}" alt="{{services.image.alt}}" width="440" height="440" loading="lazy" decoding="async">
     </div>
-    <p class="services__note" data-anim="fade-up">{{services.note}}</p>
+    <p class="services__note">{{services.note}}</p>
   </div>
 </section>
