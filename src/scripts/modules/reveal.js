@@ -1,10 +1,10 @@
-const SELECTOR = '[data-anim]';
+const SELECTOR = '[data-anim], [data-line]';
 const READY_CLASS = 'motion-ready';
 const INVIEW_CLASS = 'is-inview';
-const MAX_STAGGER_STEPS = 6;
+const MAX_STAGGER_STEPS = 8;
 
 /**
- * Появления при скролле (линии списков — scroll-lines.js и CSS).
+ * Появления и прочерчивание линий при входе в экран.
  * Ставит .motion-ready на <html> (включает стартовые состояния в CSS)
  * и .is-inview на элементы, когда они входят в экран. Один общий
  * IntersectionObserver, каждый элемент анимируется один раз.

@@ -45,20 +45,17 @@
   }
 }
 
-// Уход первого экрана при скролле: шапка и hero компенсируют скролл
-// (визуально стоят на месте) и растворяются, а следующий блок проезжает
-// поверх них. Только CSS scroll-driven animations; без поддержки и при
-// prefers-reduced-motion — обычный скролл.
-// transform должен меняться линейно и ровно на величину скролла,
-// поэтому длина хода и animation-range совпадают (70svh).
-@keyframes first-screen-out {
+// Уход первого экрана при скролле: шапка и hero прилипают (position: sticky —
+// держит браузер, без дрожания) и растворяются, а следующий блок проезжает
+// поверх них. Анимируется только opacity — на компоновщике, без перерисовки.
+// Без поддержки scroll-driven animations и при prefers-reduced-motion —
+// обычный скролл.
+@keyframes first-screen-fade {
   0% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
   }
 
-  // Растворяется быстрее, чем уезжает: к моменту, когда следующий блок
-  // доходит до заголовка, hero уже почти прозрачный
+  // Растворяется раньше, чем следующий блок доходит до заголовка
   25% {
     opacity: 0.15;
   }
@@ -70,7 +67,6 @@
   100% {
     visibility: hidden;
     opacity: 0;
-    transform: translate3d(0, 70svh, 0);
   }
 }
 
@@ -78,15 +74,24 @@
   @supports (animation-timeline: scroll()) {
     .header,
     .hero {
-      position: relative;
+      position: sticky;
       z-index: 0;
-      animation: first-screen-out linear both;
+      animation: first-screen-fade linear both;
       animation-timeline: scroll(root block);
       animation-range: 0 70svh;
     }
 
-    // Всё, что идёт после hero, — слоем выше исчезающего первого экрана
-    .hero ~ * {
+    .header {
+      top: 0;
+    }
+
+    .hero {
+      top: var(--header-height);
+    }
+
+    // Всё после первого экрана — слоем выше
+    .hero ~ *,
+    .contacts {
       position: relative;
       z-index: 1;
     }
