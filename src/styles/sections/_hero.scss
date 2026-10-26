@@ -4,7 +4,10 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  min-height: calc(100svh - var(--header-height));
+
+  // Первый экран (шапка + hero, как в макете) — 90% высоты окна.
+  // svh — стабильная высота на мобильных, без прыжков при скрытии панели браузера
+  min-height: calc(90svh - var(--header-height));
 
   @include adaptive(padding-top, 60, 100);
   @include adaptive(padding-bottom, 120, 180);

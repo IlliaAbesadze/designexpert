@@ -41,4 +41,19 @@ test.describe('адаптив', () => {
       previous = size;
     }
   });
+
+  for (const [width, height] of [
+    [375, 812],
+    [1440, 900],
+    [1920, 1080],
+  ]) {
+    test(`первый экран — 90% высоты окна на ${width}×${height}`, async ({ page }) => {
+      await page.setViewportSize({ width, height });
+      await page.goto('/');
+      const bottom = await page
+        .getByTestId('hero')
+        .evaluate((el) => el.getBoundingClientRect().bottom + window.scrollY);
+      expect(Math.abs(bottom - height * 0.9)).toBeLessThan(2);
+    });
+  }
 });
